@@ -26,7 +26,7 @@ def ECA(P, Q, A):
 ## Associativity is hard to prove. But here are some examples. You have to verify first
 ## that the points are actually on the curve before you can add them together. We'll try y^2 = x^3 - 25x. 
 
-B, C, D = (0,0), (5,0), (-4,6)
+# B, C, D = (0,0), (5,0), (-4,6)
 # Check for associativity of B, C, and D. 
 # R = ECA(B, C, -25)
 # print(f"R = {R}")
