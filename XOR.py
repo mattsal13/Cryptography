@@ -27,7 +27,7 @@ def decimal(byte):
 
     return n
     
-## defining XOR on a bit string
+## defining XOR on a bit LIST
 def XOR(byte1, byte2):
     m = max(len(byte1), len(byte2))
     new_byte = []
@@ -39,6 +39,21 @@ def XOR(byte1, byte2):
                 new_byte.append(byte1[i])
             except IndexError:
                 new_byte.append(byte2[i])
+    
+    return new_byte
+
+# XOR on bit STRINGS. Returns a STRING.
+def XORs(byte1, byte2):
+    m = max(len(byte1), len(byte2))
+    new_byte = []
+    for i in range(m):
+        try:
+            new_byte.append((int(byte1[i]) + int(byte2[i])) % 2)
+        except IndexError:
+            try:
+                new_byte.append(int(byte1[i]))
+            except IndexError:
+                new_byte.append(int(byte2[i]))
     
     return new_byte
 
