@@ -1,3 +1,7 @@
+import codecs
+import binascii
+import random
+
 ## This function will convert a decimal into a bitwise string
 ## and then perform XOR operation
 
@@ -83,3 +87,44 @@ def XORa(x, y):
 
 # print(XORs('100101', '101010111'))
 # print(XORs('100101011', '101010111'))
+
+## Defining XOR when the messages are written in hexadecimal.
+
+def XOR_hex(hex1, hex2):
+
+    # Fill with zeroes so that they are the same length. 
+    if len(hex1) > len(hex2):
+        hex2 = hex2.zfill(len(hex1))
+    elif len(hex1) < len(hex2):
+        hex1 = hex1.zfill(len(hex2))
+
+    # Separates the hex encoded message into bytes (2 hexadecimals) to prepare for ascii translation.
+    # Note that the messages are allowed to have unequal lengths. 
+    hex1_chrs = [hex1[i] + hex1[i + 1] for i in range(0, len(hex1), 2)]
+    hex2_chrs = [hex2[i] + hex2[i + 1] for i in range(0, len(hex2), 2)]
+
+    # Binary conversion.
+    hex1_bin = ["{0:08b}".format(int(chr, 16)) for chr in hex1_chrs]
+    hex2_bin = ["{0:08b}".format(int(chr, 16)) for chr in hex2_chrs]
+
+    # XOR the two lists
+    xor = [XORs(x, y) for (x, y) in zip(hex1_bin, hex2_bin)]
+
+    # Convert back to hex. Make sure they are 2 characters each. Then put back together to get a string.
+    xor_hex = [hex(int(bin_string, 2)).lstrip('0x').zfill(2) for bin_string in xor]
+    xor_string = ''.join(xor_hex)
+
+    return xor_string
+
+
+def hex_to_ascii(hex):
+    hex_chrs = [hex[i] + hex[i + 1] for i in range(0, len(hex), 2)]
+    ascii_chrs = []
+
+    for char in hex_chrs:
+        try:
+            ascii_chrs.append(bytearray.fromhex(char).decode())
+        except UnicodeDecodeError:
+            ascii_chrs.append('_')
+    
+    return ascii_chrs
