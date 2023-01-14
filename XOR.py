@@ -81,5 +81,5 @@ def XORs(byte1, byte2):
 def XORa(x, y):
     return decimal(XOR(bitwise(x), bitwise(y)))
 
-print(XORs('100101', '101010111'))
-print(XORs('100101011', '101010111'))
+# print(XORs('100101', '101010111'))
+# print(XORs('100101011', '101010111'))

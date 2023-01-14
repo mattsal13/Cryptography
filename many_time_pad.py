@@ -38,7 +38,7 @@ lengths = [len(ciph) for ciph in cipher_dict.values()]
 min_len = min(lengths)
 max_len = max(lengths)
 
-print(f'Longest (hex) cipher length: {max_len}; shortest: {min_len}')
+# print(f'Longest (hex) cipher length: {max_len}; shortest: {min_len}')
 
 ## Create a dictionary with binary instead of hex values. 
 bin_dict = dict()
@@ -52,7 +52,7 @@ bin_lengths = [len(bin_ciph) for bin_ciph in bin_dict.values()]
 min_bin = min(bin_lengths)
 max_bin = max(bin_lengths)
 
-print(f'Longest (binary) cipher length: {max_bin}; shortest: {min_bin}')
+# print(f'Longest (binary) cipher length: {max_bin}; shortest: {min_bin}')
 
 ## Now we fill until all the binary strings are max = 1486 in length.
 # for key in bin_dict.keys():
@@ -67,12 +67,14 @@ for i in range(1, 10):
     c = cipher_dict[f'c_{i}']
     char_dict[f'chars_{i}'] = [c[j] + c[j + 1] for j in range(len(c) // 2)]
 
-print(char_dict['chars_3'])
+# print(char_dict['chars_3'])
 
 # And the binary representation:
 bin_chars = ["{0:08b}".format(int(hex, 16)) for hex in char_dict['chars_3']]
 
 # Converts the cipher'd characters to decimal then to ascii.
-test = [chr(int(hex, 16)) for hex in char_dict['chars_3']]
+# test = [chr(int(hex, 16)) for hex in char_dict['chars_3']]
 
-print(test)
+hash = hex(int(XORs(bin_dict['c_1'], bin_dict['c_2'])))
+
+print(hash)
