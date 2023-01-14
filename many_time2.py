@@ -41,6 +41,7 @@ c14_alph = [x if x.isalpha() else '_' for x in c14]
 # print(c14_alph)
 
 ## We can figure out where the spaces and letters are according to the following scheme: 
-## look for a place in mi XOr mj where there is a letter, say for example 'A'. Then one of 
-## mi and mj is 'a' while the other is a SPACE. Then just XOR one or the other with SPACE
-## to determine which is which. 
+## look for a place in mi XOR mj where there is a letter, say at position 3, for example, there is an 'A'. 
+## Then one of mi and mj is 'a' while the other is a SPACE. If you do mi XOR mk for some other k,
+## and there is a different letter at position 3, then there is a SPACE at (mi)_3. 
+
