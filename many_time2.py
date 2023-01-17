@@ -26,22 +26,27 @@ print(f'Maximum length cipher is {M}.')
 for i in range(1, 10):
     cipher_dict[f'c{i}'] = cipher_dict[f'c{i}'].zfill(M)
 
-c12 = hex_to_ascii(XOR_hex(cipher_dict['c1'], cipher_dict['c2']))
-c12_alph = [x if x.isalpha() else '_' for x in c12]
+## Creates a dictionary with XOR values by pair, as well as creating a dictionary
+## with all the index positions of a potential SPACE. 
+XOR_dict = dict()
+potential_indices = dict()
 
-c13 = hex_to_ascii(XOR_hex(cipher_dict['c1'], cipher_dict['c3']))
-c13_alph = [x if x.isalpha() else '_' for x in c13]
-
-c14 = hex_to_ascii(XOR_hex(cipher_dict['c1'], cipher_dict['c4']))
-c14_alph = [x if x.isalpha() else '_' for x in c14]
+for i in range(1, 10):
+    for j in range(1, i):
+        new_XOR = hex_to_ascii(XOR_hex(cipher_dict[f'c{i}'], cipher_dict[f'c{j}']))
+        XOR_dict[f'c{j}{i}'] = [x if x.isalpha() else '_' for x in new_XOR]  
 
 # print(c12)
-# print(c12_alph)
-# print(c13_alph)
-# print(c14_alph)
+print(XOR_dict['c12'])
+print(XOR_dict['c13'])
+print(XOR_dict['c14'])
+print(XOR_dict['c15'])
+print(XOR_dict['c16'])
+print(XOR_dict['c17'])
 
-## We can figure out where the spaces and letters are according to the following scheme: 
-## look for a place in mi XOR mj where there is a letter, say at position 3, for example, there is an 'A'. 
-## Then one of mi and mj is 'a' while the other is a SPACE. If you do mi XOR mk for some other k,
-## and there is a different letter at position 3, then there is a SPACE at (mi)_3. 
+## If there is a letter at a given location in, say, c12, then that means either m1 or m2
+## has a space (there is no other possibility). If say m1 has a space at the location j, then
+## (SPACE)_j XOR c_j = key_j.
+
+
 

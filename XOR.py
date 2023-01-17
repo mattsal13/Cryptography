@@ -128,3 +128,16 @@ def hex_to_ascii(hex):
             ascii_chrs.append('_')
     
     return ascii_chrs
+
+def get_letter_index(lst):
+    counter = 0
+    M = len(lst)
+    index_list = []
+    while counter < M:
+        if lst[counter].isalpha():
+            index_list.append(counter)
+            counter += 1
+        else:
+            counter += 1
+    return index_list
+
