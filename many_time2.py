@@ -36,13 +36,15 @@ for i in range(1, 10):
         new_XOR = hex_to_ascii(XOR_hex(cipher_dict[f'c{i}'], cipher_dict[f'c{j}']))
         XOR_dict[f'c{j}{i}'] = [x if x.isalpha() else '_' for x in new_XOR]  
 
+
+
 # print(c12)
 print(XOR_dict['c12'])
-print(XOR_dict['c13'])
-print(XOR_dict['c14'])
-print(XOR_dict['c15'])
-print(XOR_dict['c16'])
-print(XOR_dict['c17'])
+# print(XOR_dict['c13'])
+# print(XOR_dict['c14'])
+# print(XOR_dict['c15'])
+# print(XOR_dict['c16'])
+# print(XOR_dict['c17'])
 
 ## If there is a letter at a given location in, say, c12, then that means either m1 or m2
 ## has a space (there is no other possibility). If say m1 has a space at the location j, then
