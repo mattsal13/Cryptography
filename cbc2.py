@@ -36,20 +36,21 @@ print(f'Number of bytes of the ciphertext: {len(ct)}')
 #         ct = ct + b'\x10'
 
 # Decryption
-decrypt = cipher.decryptor()
+# decrypt = cipher.decryptor()
 
-mes = decrypt.update(ct) + decrypt.finalize()
-print(mes)
+# mes = decrypt.update(ct) + decrypt.finalize()
+# print(mes)
 # dec_mes = mes.decode('utf_8', errors='ignore')
 # print(dec_mes)
 
 
 '''Example to test that it's working.'''
-## 'hello world' has length 11. So block size of 5?
-# encryptor = cipher.encryptor()
-# ct = encryptor.update(b"hello world" + b'\x05\x05\x05\x05\x05') + encryptor.finalize()
+# 'hello world' has length 11. So block size of 5?
+encryptor = cipher.encryptor()
+# What does finalize do?
+ct = encryptor.update(b"hello world" + b'\x05\x05\x05\x05\x05') + encryptor.finalize()
+print(ct)
+decryptor = cipher.decryptor()
+mes = decryptor.update(ct) + decryptor.finalize()
 
-# decryptor = cipher.decryptor()
-# mes = decryptor.update(ct) + decryptor.finalize()
-
-# print(mes)
+print(mes)
