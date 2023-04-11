@@ -2,7 +2,9 @@
 from fractions import Fraction
 import math
 
-## The group operations. P and Q are points in the plane.
+## The group operations. P and Q are points in the plane. A is the coefficient of the x term in the EC equation
+## (it doesn't depend on B). 
+
 def ECA(P, Q, A):
     x_1, y_1 = P[0], P[1]
     x_2, y_2 = Q[0], Q[1]
@@ -47,3 +49,19 @@ def doubling(k, point, A):
     for _ in range(k):
         X = ECA(X, X, A)
     return X
+
+'''An example demonstrating that EC arithmetic mod n is tricky, at least if n is composite.'''
+P, Q, A = (1,1), (21,4), -1
+
+# One can see that the denominator of the x-coordinate is 0 modulo 25. What to do?
+SUM = ECA(P, Q, A)
+
+'''Another example, this time we want to know if E(Q) -> E(F_7) is a homomorphism. Note that the two points are congruent mod 7,
+so mod 7 one would use the tangent line formula to compute the sum. On the other hand, if we did the arithmetic in E(Q) first, 
+they are obviously distinct so one does not use the tangent formula. Turns out this isn't a problem, but that's not obvious. '''
+P, Q, A = (1,1), (Fraction(571, 361), Fraction(16379, 6859)), 3
+
+SUM = ECA(P, Q, A)
+print(SUM)
+
+'''Elliptic curve arithmetic over finite fields'''
